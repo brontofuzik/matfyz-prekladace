@@ -1,0 +1,129 @@
+#ifndef GUARD_MLASKAL_LABELED_ICBLOCK_H_
+#define GUARD_MLASKAL_LABELED_ICBLOCK_H_
+
+/*
+
+    labeled_icblock.hpp
+
+    Labeled IC block (instructions with abstract labels and literals)
+
+    Kuba, 2006
+
+*/
+
+#include <map>
+#include <vector>
+#include <set>
+#include <stdexcept>
+#include <utility>
+
+#include "plain_icblock.hpp"
+#include "abstract_instr.hpp"
+#include "ic_instr.hpp"
+#include "flat_icblock.hpp"
+
+namespace mlaskal {
+
+    class ftor_fnc_trans_body;    // publisher for a functor which uses the private constructor
+
+    /// code block 
+    /** 
+	contains a sequence of instructions and labels
+    **/
+    class labeled_icblock {
+    public:
+	/// constructs an empty labeled_icblock
+	labeled_icblock() { }	    // an empty block
+    private:
+	labeled_icblock(plain_icblock<ic_instr>::const_iterator first, 
+			plain_icblock<ic_instr>::const_iterator last, 
+			const abstract_ic &aic, 
+			const flat_icblock &ficb); // constructing from flat block - do not use this one
+    public:
+
+	// container requirements
+	/// container requirement: value_type
+	typedef plain_icblock<abstract_instr>::value_type value_type;
+	/// container requirement: reference
+	typedef plain_icblock<abstract_instr>::value_type & reference;
+	/// container requirement: const_reference
+	typedef const plain_icblock<abstract_instr>::value_type & const_reference;
+	/// container requirement: size_type
+	typedef plain_icblock<abstract_instr>::size_type size_type;
+	/// container requirement: iterator
+	typedef plain_icblock<abstract_instr>::iterator iterator;
+	/// container requirement: const_iterator
+	typedef plain_icblock<abstract_instr>::const_iterator const_iterator;
+
+	/// container requirement: size
+	size_type size() const { return block_.size(); }
+	/// container requirement: empty
+	bool empty() const { return !block_.size(); }
+	/// container requirement: begin
+	iterator begin() { return block_.begin(); }
+	/// container requirement: begin
+	const_iterator begin() const { return block_.begin(); }
+	/// container requirement: end
+	iterator end() { return block_.end(); }	
+	/// container requirement: end
+	const_iterator end() const { return block_.end(); }	
+
+    private:
+	void push_back(const_reference v);	// should be public, but we don't want to be used by anyone
+
+    public:
+	// custom functions
+
+	/// @cond INTERNAL
+
+	/// \internal
+	const_iterator rel_iter(const_iterator base, ICRELNUM idx) const { return block_. rel_iter(base, idx); }
+	/// \internal
+	ICABSNUM compute_index(const_iterator cr) const { return block_.compute_index(cr); }
+
+	/// @endcond
+
+	/// type of labels
+	/** 
+	    UIDs are used as labels
+	**/
+	typedef uid_all_type::UID_type label_type;
+
+	/// appends a label to the end of the block
+	/** resolves instruction targets pointing to this label **/
+	void add_label(label_type lbl) { empty_labels_.insert(lbl); }
+
+	/// appends one instruction without a target
+	/** labels appended to the end of the block using add_label now point to this instruction **/
+	const_iterator append_instruction(const_reference ai) 
+	{ 
+	    push_back(ai); 
+	    return --end();
+	}
+
+	/// appends one instruction with a target
+	/** labels appended to the end of the block using add_label now point to this instruction
+
+	    target label is either directly resolved, if it already existed in the block, or it is marked as unresolved and waiting for a label
+	**/
+	const_iterator append_instruction_with_target(const_reference ai, label_type tgt_lbl);
+
+	/// appends licb to the end of the block and clears the contents of the source block (source block is then empty)
+	void append_clear_block(labeled_icblock &licb);   // clears source block
+
+    private:
+	plain_icblock<abstract_instr>					block_;
+	std::map<label_type, const_iterator>				labels_;
+	std::set<label_type>						empty_labels_;		    // labels on an empty block
+	std::multimap<label_type, iterator>				targets_;
+	typedef std::pair<const_iterator, label_type>			labels_bkmap_type_;
+	std::vector<labels_bkmap_type_>					labels_bkmap_;
+	typedef std::pair<const_iterator, label_type>			targets_bkmap_type_;
+	std::vector<targets_bkmap_type_>				targets_bkmap_;
+
+	friend class ftor_fnc_trans_body;
+    };
+
+}
+
+#endif

@@ -1,0 +1,130 @@
+Integer constants
+0:	1
+1:	2
+2:	5
+3:	6
+
+Real constants
+
+String constants
+
+Identifiers
+0:	"BOOLEAN"
+1:	"INTEGER"
+2:	"REAL"
+3:	"STRING"
+4:	"FALSE"
+5:	"TRUE"
+6:	"READI"
+7:	"READR"
+8:	"READS"
+9:	"P"
+10:	"WRITEI"
+11:	"WRITER"
+12:	"WRITES"
+13:	"WRITELN"
+14:	"DU5TEST4"
+15:	"DVA"
+16:	"ARR"
+17:	"A"
+18:	"B"
+19:	"C"
+20:	"D"
+21:	"CISLO"
+22:	"S"
+23:	"POLE"
+24:	"MULTIPLY"
+25:	"I"
+26:	"J"
+
+Functions and procedures
+READI:INTEGER	[0;2], used registers=0
+READR:REAL	[3;5], used registers=0
+READS:STRING	[6;8], used registers=0
+WRITEI(P:INTEGER [size=1;stkoffs=-1])	[9;11], used registers=0
+WRITER(P:REAL [size=1;stkoffs=-1])	[12;14], used registers=0
+WRITES(P:STRING [size=1;stkoffs=-1])	[15;17], used registers=0
+WRITELN	[18;19], used registers=0
+MULTIPLY(I:INTEGER [size=1;stkoffs=-2], J:INTEGER [size=1;stkoffs=-1]):INTEGER	[20;38], used registers=0
+	VAR
+		A:ANY[start=39;end39size=4;stkoffs=1]
+		B:INTEGER[start=39;end39size=1;stkoffs=5]
+DU5TEST4	[39;61], used registers=0
+	VAR
+		CISLO:INTEGER[start=62;end62size=1;stkoffs=0]
+		S:STRING[start=62;end62size=1;stkoffs=1]
+		POLE:ANY[start=62;end62size=4;stkoffs=2]
+
+Instructions
+READI:
+0:	FNCREADI
+1:	LSTI	[-1]
+2:	RET
+READR:
+3:	FNCREADR
+4:	LSTR	[-1]
+5:	RET
+READS:
+6:	FNCREADS
+7:	LSTS	[-1]
+8:	RET
+WRITEI:
+9:	LLDI	[-1]
+10:	FNCWRITEI
+11:	RET
+WRITER:
+12:	LLDR	[-1]
+13:	FNCWRITER
+14:	RET
+WRITES:
+15:	LLDS	[-1]
+16:	FNCWRITES
+17:	RET
+WRITELN:
+18:	FNCWRITELN
+19:	RET
+MULTIPLY:
+20:	INITI
+21:	INITI
+22:	INITR
+23:	INITS
+24:	INITI
+25:	LLDI	[-2]
+26:	LSTI	[2]
+27:	LLDI	[2]
+28:	LLDI	[-1]
+29:	MULI
+30:	LSTI	[1]
+31:	LLDI	[1]
+32:	LSTI	[-3]
+33:	DTORI
+34:	DTORS
+35:	DTORR
+36:	DTORI
+37:	DTORI
+38:	RET
+DU5TEST4:
+39:	INITI
+40:	INITS
+41:	INITI
+42:	INITI
+43:	INITR
+44:	INITS
+45:	INITI
+46:	LDLITI	LITINT[2]
+47:	LDLITI	LITINT[3]
+48:	CALL	20	;; label=MULTIPLY
+49:	DTORI
+50:	DTORI
+51:	GSTI	[0]
+52:	GLDI	[0]
+53:	CALL	9	;; label=WRITEI
+54:	DTORI
+55:	DTORS
+56:	DTORR
+57:	DTORI
+58:	DTORI
+59:	DTORS
+60:	DTORI
+61:	HALT
+

@@ -1,0 +1,14 @@
+Error (line 21): Incompatible operand
+Error (line 21): Incompatible operand
+Error (line 22): Incompatible operand
+Error (line 22): Incompatible operand
+Error (line 46): Incompatible operand
+Error (line 46): Incompatible operand
+Error (line 47): Incompatible operand
+Error (line 47): Incompatible operand
+Error (line 48): Incompatible operand
+Error (line 50): Incompatible operand
+Error (line 51): Incompatible operand
+Warning (line 2): Label '729' declared but never used
+Warning (line 15): Label '729' declared but never used
+There were some errors 11 and warnings 2

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioUserFile
+	ProjectType="Visual C++"
+	Version="9,00"
+	ShowAllFiles="false"
+	>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			>
+			<DebugSettings
+				Command="$(TargetPath)"
+				WorkingDirectory="C:\Documents and Settings\lukaskudela\Dokumenty\Visual Studio 2008\Projects\mlaskal\public-ro\mlc\du5\tests"
+				CommandArguments="du5-test4.mls du5-test4.mo_ -Sdu5-test4.moa_ -Ddu5-test4.stcd_"
+				Attach="false"
+				DebuggerType="3"
+				Remote="1"
+				RemoteMachine="PRESTIGIO"
+				RemoteCommand=""
+				HttpUrl=""
+				PDBPath=""
+				SQLDebugging=""
+				Environment=""
+				EnvironmentMerge="true"
+				DebuggerFlavor="0"
+				MPIRunCommand=""
+				MPIRunArguments=""
+				MPIRunWorkingDirectory=""
+				ApplicationCommand=""
+				ApplicationArguments=""
+				ShimCommand=""
+				MPIAcceptMode=""
+				MPIAcceptFilter=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			>
+			<DebugSettings
+				Command="$(TargetPath)"
+				WorkingDirectory="C:\Documents and Settings\lukaskudela\Dokumenty\Visual Studio 2008\Projects\mlaskal\public-ro\mlc\du5\tests"
+				CommandArguments="du5-test1.mls du5-test1.mo.lukas &gt; du5-test1.out.lukas"
+				Attach="false"
+				DebuggerType="3"
+				Remote="1"
+				RemoteMachine="PRESTIGIO"
+				RemoteCommand=""
+				HttpUrl=""
+				PDBPath=""
+				SQLDebugging=""
+				Environment=""
+				EnvironmentMerge="true"
+				DebuggerFlavor="0"
+				MPIRunCommand=""
+				MPIRunArguments=""
+				MPIRunWorkingDirectory=""
+				ApplicationCommand=""
+				ApplicationArguments=""
+				ShimCommand=""
+				MPIAcceptMode=""
+				MPIAcceptFilter=""
+			/>
+		</Configuration>
+	</Configurations>
+</VisualStudioUserFile>

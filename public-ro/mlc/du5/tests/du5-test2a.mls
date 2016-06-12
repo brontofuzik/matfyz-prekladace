@@ -1,0 +1,32 @@
+program du5test4;
+
+const dva = 2;
+
+type
+   arr = record
+     a,b : integer;
+     c : real;
+     d : string;
+     end;
+
+var
+   cislo:integer;
+   s:string;
+   pole:arr;
+
+function multiply(i,j:integer):integer;
+var
+   a : arr;
+   b : integer;
+begin
+   a.b := i;
+   a.a := a.b*j;
+   multiply:=a.a;
+end;
+
+begin
+   cislo := multiply(5,6);
+   writei(cislo);
+
+
+end.

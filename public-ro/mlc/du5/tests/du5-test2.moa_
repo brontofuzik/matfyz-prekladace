@@ -1,0 +1,193 @@
+Integer constants
+0:	1
+1:	729
+2:	2
+3:	3
+4:	4
+5:	5
+6:	6
+7:	30
+8:	11
+9:	10
+
+Real constants
+
+String constants
+0:	"ahoj"
+1:	" lidi"
+
+Identifiers
+0:	"BOOLEAN"
+1:	"INTEGER"
+2:	"REAL"
+3:	"STRING"
+4:	"FALSE"
+5:	"TRUE"
+6:	"READI"
+7:	"READR"
+8:	"READS"
+9:	"P"
+10:	"WRITEI"
+11:	"WRITER"
+12:	"WRITES"
+13:	"WRITELN"
+14:	"DU5TEST4"
+15:	"DVA"
+16:	"ARR"
+17:	"CISLO"
+18:	"S"
+19:	"POLE"
+20:	"MULTIPLY"
+21:	"I"
+22:	"J"
+23:	"A"
+24:	"B"
+25:	"JEDNA"
+26:	"PLUSJEDNA"
+27:	"VYPISDVAKRAT"
+28:	"R"
+
+Functions and procedures
+READI:INTEGER	[0;2], used registers=0
+READR:REAL	[3;5], used registers=0
+READS:STRING	[6;8], used registers=0
+WRITEI(P:INTEGER [size=1;stkoffs=-1])	[9;11], used registers=0
+WRITER(P:REAL [size=1;stkoffs=-1])	[12;14], used registers=0
+WRITES(P:STRING [size=1;stkoffs=-1])	[15;17], used registers=0
+WRITELN	[18;19], used registers=0
+MULTIPLY(I:INTEGER [size=1;stkoffs=-2], J:INTEGER [size=1;stkoffs=-1]):INTEGER	[20;28], used registers=0
+	VAR
+		A:UNDEF[start=29;end29size=0;stkoffs=1]
+		B:INTEGER[start=29;end29size=1;stkoffs=1]
+JEDNA:INTEGER	[29;31], used registers=0
+PLUSJEDNA(I:INTEGER [size=1;stkoffs=-1]):INTEGER	[32;36], used registers=0
+VYPISDVAKRAT(I:INTEGER [size=1;stkoffs=-1])	[37;47], used registers=0
+	VAR
+		R:REAL[start=48;end48size=1;stkoffs=1]
+DU5TEST4	[48;106], used registers=0
+	VAR
+		CISLO:INTEGER[start=107;end107size=1;stkoffs=0]
+		S:STRING[start=107;end107size=1;stkoffs=1]
+		POLE:UNDEF[start=107;end107size=0;stkoffs=2]
+
+Instructions
+READI:
+0:	FNCREADI
+1:	LSTI	[-1]
+2:	RET
+READR:
+3:	FNCREADR
+4:	LSTR	[-1]
+5:	RET
+READS:
+6:	FNCREADS
+7:	LSTS	[-1]
+8:	RET
+WRITEI:
+9:	LLDI	[-1]
+10:	FNCWRITEI
+11:	RET
+WRITER:
+12:	LLDR	[-1]
+13:	FNCWRITER
+14:	RET
+WRITES:
+15:	LLDS	[-1]
+16:	FNCWRITES
+17:	RET
+WRITELN:
+18:	FNCWRITELN
+19:	RET
+MULTIPLY:
+20:	INITI
+21:	LDLITI	LITINT[3]
+22:	LSTI	[1]
+23:	LLDI	[-2]
+24:	LLDI	[-1]
+25:	MULI
+26:	LSTI	[-3]
+27:	DTORI
+28:	RET
+JEDNA:
+29:	LDLITI	LITINT[0]
+30:	LSTI	[-1]
+31:	RET
+PLUSJEDNA:
+32:	LLDI	[-1]
+33:	LDLITI	LITINT[0]
+34:	ADDI
+35:	LSTI	[-2]
+36:	RET
+VYPISDVAKRAT:
+37:	INITR
+38:	LLDI	[-1]
+39:	LDLITI	LITINT[2]
+40:	MULI
+41:	CVRTIR
+42:	LSTR	[1]
+43:	LLDR	[1]
+44:	CALL	12	;; label=WRITER
+45:	DTORR
+46:	DTORR
+47:	RET
+DU5TEST4:
+48:	INITI
+49:	INITS
+50:	INITI
+51:	LDLITI	LITINT[5]
+52:	LDLITI	LITINT[6]
+53:	CALL	20	;; label=MULTIPLY
+54:	DTORI
+55:	DTORI
+56:	GSTI	[0]
+57:	LDLITI	LITINT[7]
+58:	CVRTIR
+59:	LDLITI	LITINT[8]
+60:	CVRTIR
+61:	DIVR
+62:	LDLITI	LITINT[7]
+63:	LDLITI	LITINT[8]
+64:	MODI
+65:	LDLITI	LITINT[0]
+66:	GSTI	[0]
+67:	CALL	9	;; label=WRITEI
+68:	DTORI
+69:	LDLITI	LITINT[9]
+70:	GSTI	[0]
+71:	GLDI	[0]
+72:	CALL	37	;; label=VYPISDVAKRAT
+73:	DTORI
+74:	LDLITI	LITINT[5]
+75:	LDLITI	LITINT[2]
+76:	MULI
+77:	LDLITI	LITINT[9]
+78:	LDLITI	LITINT[4]
+79:	LDLITI	LITINT[0]
+80:	SUBI
+81:	MODI
+82:	ADDI
+83:	GSTI	[0]
+84:	LDLITS	LITSTR[0]
+85:	GSTS	[1]
+86:	GLDS	[1]
+87:	LDLITS	LITSTR[1]
+88:	ADDS
+89:	GSTS	[1]
+90:	GLDS	[1]
+91:	CALL	15	;; label=WRITES
+92:	DTORS
+93:	INITI
+94:	CALL	29	;; label=JEDNA
+95:	CALL	9	;; label=WRITEI
+96:	DTORI
+97:	INITI
+98:	LDLITI	LITINT[2]
+99:	CALL	32	;; label=PLUSJEDNA
+100:	DTORI
+101:	CALL	9	;; label=WRITEI
+102:	DTORI
+103:	CALL	18	;; label=WRITELN
+104:	DTORS
+105:	DTORI
+106:	HALT
+
